@@ -59,7 +59,7 @@ RUN mkdir /php && \
     cd php-5.2.17; \
     wget -c -t 3 -O ./debian_patches_disable_SSLv2_for_openssl_1_0_0.patch https://bugs.php.net/patch-display.php\?bug_id\=54736\&patch\=debian_patches_disable_SSLv2_for_openssl_1_0_0.patch\&revision=1305414559\&download\=1 && \
     patch -p1 -b < debian_patches_disable_SSLv2_for_openssl_1_0_0.patch && \
-    
+
     # Build apache module
     ./configure \
         --bindir=/usr/bin \
@@ -159,10 +159,11 @@ RUN mkdir /php && \
         --with-apxs2=/usr/bin/apxs2 \
         --with-pic \
         --enable-pcntl \
+		--with-ldap\
     && \
     make && \
     make install && \
-    
+
     # Build cli
     ./configure \
         --bindir=/usr/bin \
